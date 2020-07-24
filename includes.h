@@ -5,12 +5,7 @@
 #include "FS.h"// for SPIFFS
 #include "SPIFFS.h"
 #include <WiFi.h>
-//#include <Wire.h>//for I2C RTC
-////#include <WiFiUdp.h>
-//#include <WiFiClientSecure.h>
-//#include <PubSubClient.h>//for mqtt
-//
-//#include <Pushsafer.h>
+
 #include <ArduinoJson.h>
 
 #include <BLEDevice.h>
@@ -21,7 +16,7 @@
 #include <ESPmDNS.h>
 #include <ArduinoOTA.h>
 
-
+const int LEDpin = 0;//output
 
 
 //globals
@@ -113,11 +108,11 @@ void killPower();
 void waitForButton();
 void checkIfContactChanged();
 //    rtc tab
-bool rtcInit(byte timeValue, bool setNewTime);
+//bool rtcInit(byte timeValue, bool setNewTime);
 //    pushover tab
 boolean pushOver();
 //    WiFi tab
-bool connectWiFi();
+//bool connectWiFi();
 //    battery tab
 float getBattery();
 //    congiguration tab
@@ -131,7 +126,7 @@ bool pushLogic();
 //    udp tab
 //void udp();
 int oneIP = 0, twoIP = 0, threeIP = 0, fourIP = 0;
-void getFourNumbersForIP(const char *ipChar);//used also in WiFi tab
+//void getFourNumbersForIP(const char *ipChar);//used also in WiFi tab
 // ifttt tab
 void ifttt();
 //pushSafer tab

@@ -44,11 +44,11 @@ class MyCallbacks: public BLECharacteristicCallbacks {
             token =  strtok(NULL, delimiter);
             strncpy(parsedStrings[i], token, sizeof(parsedStrings[i]));
           }
-          WiFi.disconnect();
+          //WiFi.disconnect();
           IPAddress ipBlank(0, 0, 0, 0);
           WiFi.config(ipBlank, ipBlank, ipBlank, ipBlank, ipBlank);
           delay(1000);
-          WiFi.begin(parsedStrings[1], parsedStrings[2]);
+          //WiFi.begin(parsedStrings[1], parsedStrings[2]);
 
           strlcpy(config.ssid,                  // <- destination
                   parsedStrings[1],  // <- source
@@ -472,22 +472,23 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           if (blastTimeInt > 100)
             blastTimeInt = 100;
           config.udptimeBetweenBlasts = blastTimeInt;
-
-          getFourNumbersForIP(config.udpStaticIP);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress ipudp(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.udpGatewayAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress gatewayudp(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.udpSubnetAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress subnetudp(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.udpPrimaryDNSAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress primaryDNSudp(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.udpSecondaryDNSAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress secondaryDNSudp(oneIP, twoIP, threeIP, fourIP);
+          /*
+                    getFourNumbersForIP(config.udpStaticIP);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress ipudp(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.udpGatewayAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress gatewayudp(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.udpSubnetAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress subnetudp(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.udpPrimaryDNSAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress primaryDNSudp(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.udpSecondaryDNSAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress secondaryDNSudp(oneIP, twoIP, threeIP, fourIP);
+          */
           //WiFi.disconnect();
           //delay(1000);
           //WiFi.config(ipudp, gatewayudp, subnetudp, primaryDNSudp, secondaryDNSudp);
@@ -626,27 +627,28 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
           saveConfiguration(filename, config);
           sendParam = true;
-          WiFi.disconnect();
-          delay(1000);
-
-          getFourNumbersForIP(config.staticIP);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress ip(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.staticGatewayAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress gateway(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.staticSubnetAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress subnet(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.staticPrimaryDNSAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress primaryDNS(oneIP, twoIP, threeIP, fourIP);
-          getFourNumbersForIP(config.staticSecondaryDNSAddress);
-          Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
-          IPAddress secondaryDNS(oneIP, twoIP, threeIP, fourIP);
-          WiFi.config(ip, gateway, subnet, primaryDNS, secondaryDNS);
-
-          WiFi.begin(config.ssid, config.pw);
+          //WiFi.disconnect();
+          //delay(1000);
+          /*
+                    getFourNumbersForIP(config.staticIP);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress ip(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.staticGatewayAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress gateway(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.staticSubnetAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress subnet(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.staticPrimaryDNSAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress primaryDNS(oneIP, twoIP, threeIP, fourIP);
+                    getFourNumbersForIP(config.staticSecondaryDNSAddress);
+                    Serial.printf("%i.%i.%i.%i\n", oneIP, twoIP, threeIP, fourIP);
+                    IPAddress secondaryDNS(oneIP, twoIP, threeIP, fourIP);
+                    WiFi.config(ip, gateway, subnet, primaryDNS, secondaryDNS);
+          */
+          //initAP();
+          //WiFi.begin(config.ssid, config.pw);
           //          delay(2000);
           //          connectWiFi();
         }
@@ -693,7 +695,7 @@ void initBluetooth() {
   // Create the BLE Device
   macAddressString = WiFi.macAddress();
   Serial.println("Starting Config Mode");
-  BLEDevice::init("trigBoard_Monitor");
+  BLEDevice::init("trigBoard_Gateway");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
@@ -881,7 +883,9 @@ void serviceBluetooth() {
     strcat(txString, ",");
     strcat(txString, fwVersion);
 
-    String ipAddressString = WiFi.localIP().toString();
+
+
+    String ipAddressString = " ";
     char ipAddressChar[20];
     ipAddressString.toCharArray(ipAddressChar, sizeof(ipAddressChar));
 
