@@ -7,6 +7,7 @@ WiFiServer server(80);
 //constants
 const int resetTime = 1000;//time(ms) used to reset the packet in case the same door sends the same message
 
+const int silentButtonPin = 12;
 
 #include <SoftwareSerial.h>//for sending data to particle
 const int particleRX = 33;

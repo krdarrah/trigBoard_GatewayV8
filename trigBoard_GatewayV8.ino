@@ -3,7 +3,7 @@
 #include "includes.h"
 #include "gatewayIncludes.h"//special stuff needed just for this setup, mp3 player and pins
 
-const char fwVersion[] = "7/23/20 GATEWAY";
+const char fwVersion[] = "8/03/20 GATEWAY";
 
 void setup() {
   pinMode(LEDpin, OUTPUT);
@@ -14,6 +14,7 @@ void setup() {
   loadConfiguration(filename, config);
   pinMode(0, OUTPUT);
 
+  pinMode(silentButtonPin, INPUT_PULLUP);
 
   initAP();
   initBluetooth();
@@ -24,9 +25,9 @@ void loop() {
 
   if ((millis() - bluetoothTimeoutStart) < (60 * 5 * 1000)) {//kill the bluetooth after 5minutes from boot
     //if (!OTAsetup)
-      serviceBluetooth();
-//    else
-//      checkOTA();
+    serviceBluetooth();
+    //    else
+    //      checkOTA();
   } else {
     btStop();
     digitalWrite(LEDpin, LOW);

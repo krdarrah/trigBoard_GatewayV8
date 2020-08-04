@@ -65,17 +65,20 @@ void initAP() {
           strcat(parsedStrings[0], parsedStrings[2]);
           particle.print(parsedStrings[0]);
           //Serial.println(parsedStrings[1]);//found something
-          int trackNumberToPlay = atoi(parsedStrings[1]);
 
-          WiFiUDP udpTX;
-          if (trackNumberToPlay > 0 && trackNumberToPlay < 256) {
-            IPAddress broadcastIP(255, 255, 255, 255);
-            for (int i = 0; i < 10; i++) {
-              if (udpTX.beginPacket(broadcastIP , 1234) == 1) {
-                udpTX.printf("%i", trackNumberToPlay);
-                udpTX.endPacket();
+          //send to monitors
+          if (digitalRead(silentButtonPin)) {
+          int trackNumberToPlay = atoi(parsedStrings[1]);
+            WiFiUDP udpTX;
+            if (trackNumberToPlay > 0 && trackNumberToPlay < 256) {
+              IPAddress broadcastIP(255, 255, 255, 255);
+              for (int i = 0; i < 10; i++) {
+                if (udpTX.beginPacket(broadcastIP , 1234) == 1) {
+                  udpTX.printf("%i", trackNumberToPlay);
+                  udpTX.endPacket();
+                }
+                delay(10);
               }
-              delay(10);
             }
           }
         } else {
